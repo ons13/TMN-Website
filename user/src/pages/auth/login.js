@@ -1,21 +1,29 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import {Button,Text,Space,Group,TextInput,PasswordInput } from '@mantine/core';
 import EmailIcon from '@mui/icons-material/Email';
 import Lock from '@mui/icons-material/LockOutlined';
 import { textAlign } from '@mui/system';
 
 function Login() {
+
+    const mailRef = useRef(null);
+    const passRef = useRef(null);
+
+    function loginbutton(){
+        alert("mail:"+mailRef.current.value+"\npass:"+passRef.current.value);
+    }
+
     return ( 
         <div style={{display:'flex', flexDirection:'row',height:'100vh'}}>
             <div style={{width:'60%'}}>
             <Group direction="column" style={{height:'100%',display: 'flex', alignItems: 'center', justifyContent: 'center'}}>
             <Text weight={700} style={{color:'#3d3d3d',fontSize:24}}>Sign in to your account</Text>
             <Space h="ls" />
-            <TextInput icon={<EmailIcon style={{color:'#3d3d3d'}}/>} size="lg" placeholder="email" radius="xs" error="" style={{width:'70%'}} required/>
+            <TextInput ref={mailRef} icon={<EmailIcon style={{color:'#3d3d3d'}}/>} size="lg" placeholder="email" radius="xs" error="" style={{width:'70%'}} required/>
             <Space h="ls" />
-            <PasswordInput icon={<Lock style={{color:'#3d3d3d', width:200}}/>} size="lg" placeholder="password" radius="xs" error="" style={{width:'70%'}} required/>
+            <PasswordInput ref={passRef} icon={<Lock style={{color:'#3d3d3d', width:200}}/>} size="lg" placeholder="password" radius="xs" error="" style={{width:'70%'}} required/>
             <Space h="ls" />
-            <Button color="dark" radius="xs" size="lg">Sign in</Button>
+            <Button onClick={loginbutton} color="dark" radius="xs" size="lg">Sign in</Button>
 
             </Group>
             </div>
