@@ -1,10 +1,17 @@
 const express = require ("express");
 const router = express.Router();
+const validateRegisterInput = require("../validations/register");
+const validateLoginInput = require("../validations/login");
+const User =require("../models/user");
+const bcrypt =require("bcrypt");
+
 
 
 
 router.post ('/signup',(req, res)=> {
+    console.log("bodyyyyyyyyy",req.body);
     const { errors, isValid } = validateRegisterInput(req.body);
+    
   
     // Check Validation
     if (!isValid) {

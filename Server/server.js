@@ -1,9 +1,13 @@
 const express = require("express");
 const mongoose =require ("mongoose");
 const userRoutes = require ("./routes/auth-route");
+const bodyParser = require("body-parser")
 
 
 const app =express();
+
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: false }));
 
 
 
