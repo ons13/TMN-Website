@@ -1,30 +1,33 @@
 import React from 'react';
-import { Group,Button,Text } from '@mantine/core';
-import googleIcon from '../../media/google.svg';
-import fbIcon from '../../media/facebook.svg';
-import mailIcon from '../../media/mail.png';
+import {Button,Text,Space,Group,TextInput,PasswordInput } from '@mantine/core';
+import EmailIcon from '@mui/icons-material/Email';
+import Lock from '@mui/icons-material/LockOutlined';
+import { textAlign } from '@mui/system';
 
 function Login() {
-    const buttonstyle={
-        width:300,
-        height:50,
-        borderWidth:1
-        
-        
-    }
     return ( 
-        <div>
-            
-            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', height:"100vh"}}>
-            <Group direction="column" spacing="xl">
-            <Text size="xl" weight={700} >Sign in to your account</Text>
-            <Button color="dark" radius="md" style={buttonstyle} variant="outline" leftIcon={<img src={googleIcon} alt="google" style={{width:16,height:16}} />}> Sign in with google account </Button>
-            <Button color="dark" radius="md" style={buttonstyle} variant="outline" leftIcon={<img src={fbIcon} alt="google" style={{width:18,height:18}} />}> Sign in with Facebook account</Button>
-            <Button color="dark" radius="md" style={buttonstyle} variant="outline" leftIcon={<img src={mailIcon} alt="google" style={{width:22,height:16}} />}> Sign in with email address </Button>
-            <Group spacing="xs">
-            <Text color="dimmed" size="md">Still don't have an account?</Text>
-            <Text color="dark" variant="link" component="a" href="edseds">Join us now.</Text>
+        <div style={{display:'flex', flexDirection:'row',height:'100vh'}}>
+            <div style={{width:'60%'}}>
+            <Group direction="column" style={{height:'100%',display: 'flex', alignItems: 'center', justifyContent: 'center'}}>
+            <Text weight={700} style={{color:'#3d3d3d',fontSize:24}}>Sign in to your account</Text>
+            <Space h="ls" />
+            <TextInput icon={<EmailIcon style={{color:'#3d3d3d'}}/>} size="lg" placeholder="email" radius="xs" error="" style={{width:'70%'}} required/>
+            <Space h="ls" />
+            <PasswordInput icon={<Lock style={{color:'#3d3d3d', width:200}}/>} size="lg" placeholder="password" radius="xs" error="" style={{width:'70%'}} required/>
+            <Space h="ls" />
+            <Button color="dark" radius="xs" size="lg">Sign in</Button>
+
             </Group>
+            </div>
+
+            <div style={{padding:20,width:'40%',backgroundColor:'#3d3d3d',display: 'flex', alignItems: 'center', justifyContent: 'center'}}>
+            <Group direction="column" style={{display: 'flex', alignItems: 'center', justifyContent: 'center'}}>
+            <Text weight={700} style={{color:'#FFFFFF',fontSize:24, textAlign:'center'}}>Welcome to Tunisian Modern Newspaper</Text>
+            <Space h="xl" />
+            <div style={{width:200,height:2,backgroundColor:'#FFFFFF'}}/>
+            <Space h="xl" />
+            <Text weight={300} style={{color:'#FFFFFF',fontSize:16,textAlign:'center'}}>we are a team of highly motivated indivuals who bla bla bla...it will be a great pleasure for you to join us eds eds eds boiiii</Text>
+            
             </Group>
             </div>
         </div>

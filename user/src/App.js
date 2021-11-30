@@ -2,8 +2,8 @@ import React from 'react';
 import {BrowserRouter as Router,Switch,Route} from "react-router-dom";
 import NotFoundPage from './pages/notFoundPage';
 import LandingPage from './pages/landingPage';
+import LoginNav from './pages/auth/loginNavigation'
 import Login from './pages/auth/login'
-
 
 
 function App() {
@@ -14,6 +14,10 @@ function App() {
 
         <Route exact path="/">
             <LandingPage />
+          </Route>
+
+          <Route exact path="/loginNavigation">
+            <LoginNav />
           </Route>
 
           <Route exact path="/login">
