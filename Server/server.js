@@ -1,6 +1,6 @@
 const express = require("express");
 const mongoose =require ("mongoose");
-const userRoutes = require ("./routes/auth-route.js");
+const userRoutes = require ("./routes/auth-route");
 
 
 const app =express();
@@ -25,6 +25,8 @@ mongoose.connect('mongodb+srv://ernez:9731323697313236@cluster0.oxqtz.mongodb.ne
   app.get('/',(req,res)=>{
     res.send("test1 ");
 })
-
 app.use('/api/auth', userRoutes);
+
+
+
 app.listen(3000,console.log("server up to running"));
