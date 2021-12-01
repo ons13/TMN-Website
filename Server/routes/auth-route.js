@@ -6,9 +6,12 @@ const validateLoginInput = require("../validations/login");
 const User =require("../models/user");
 const bcrypt =require("bcrypt");
 const keys = require("../config/keys");
+const passport = require("passport");
+require("../midlewares/passport");
 
 
 
+//register
 
 router.post ('/signup',(req, res)=> {
    
@@ -46,6 +49,8 @@ router.post ('/signup',(req, res)=> {
       }
     });
   });
+
+  //login
 
 router.post ('/login',(req, res) => {
     const { errors, isValid } = validateLoginInput(req.body);
@@ -91,5 +96,29 @@ router.post ('/login',(req, res) => {
       });
     });
   });
+
+//google auth 
+
+router.get('/google',
+passport.authenticate('google',{scope: ['email' , 'profile']})
+);
+
+router.get('/google/calback', 
+passport.authenticate('google', {
+  successRedirect: '/protected',
+  failureRedirect:'/auth/failure',
+})
+);
+
+
+
+//logout
+
+
+ router.post('/logout',(req, res, next) => {
+    res.clearCookie('access_token');
+    // console.log('I managed to get here!');
+    res.json({ success: true });
+  })
 
 module.exports = router ;

@@ -2,14 +2,17 @@ const express = require("express");
 const mongoose =require ("mongoose");
 const userRoutes = require ("./routes/auth-route");
 const bodyParser = require("body-parser")
-
+const passport = require("passport");
+const session =require("express-session");
 
 const app =express();
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 
-
+app.use(session({ secret: 'cats'}));
+app.use(passport.initialize());
+app.use(passport.session());
 
 
 
