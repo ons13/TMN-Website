@@ -1,17 +1,23 @@
-import React, { useRef } from 'react';
-import {Button,Text,Space,Group,TextInput,PasswordInput } from '@mantine/core';
+import React, {useState, useRef } from 'react';
+import {Checkbox,Button,Text,Space,Group,TextInput,PasswordInput } from '@mantine/core';
 import EmailIcon from '@mui/icons-material/Email';
 import Lock from '@mui/icons-material/LockOutlined';
+import PersonIcon from '@mui/icons-material/Person';
 import { textAlign } from '@mui/system';
 
-function Login() {
+function Signup() {
 
+    const usernameRef = useRef(null);
     const mailRef = useRef(null);
     const passRef = useRef(null);
-    
+    const cpassRef = useRef(null);
+    const chk = useRef(null);
+    var [isChecked,setisChecked] = useState(false);
 
-    function loginbutton(){
-        alert("mail:"+mailRef.current.value+"\npass:"+passRef.current.value);
+
+    function signupbutton(){
+        alert("username:"+usernameRef.current.value+"\nmail:"+mailRef.current.value+"\npass:"+passRef.current.value+"\nconfirm pass:"+cpassRef.current.value+"\nchecked:"+isChecked);
+
     }
 
     return ( 
@@ -20,11 +26,17 @@ function Login() {
             <Group direction="column" style={{height:'100%',display: 'flex', alignItems: 'center', justifyContent: 'center'}}>
             <Text weight={700} style={{color:'#3d3d3d',fontSize:24}}>Sign in to your account</Text>
             <Space h="ls" />
+            <TextInput ref={usernameRef} icon={<PersonIcon style={{color:'#3d3d3d'}}/>} size="lg" placeholder="username" radius="xs" error="" style={{width:'70%'}} required/>
+            <Space h="ls" />
             <TextInput ref={mailRef} icon={<EmailIcon style={{color:'#3d3d3d'}}/>} size="lg" placeholder="email" radius="xs" error="" style={{width:'70%'}} required/>
             <Space h="ls" />
             <PasswordInput ref={passRef} icon={<Lock style={{color:'#3d3d3d', width:200}}/>} size="lg" placeholder="password" radius="xs" error="" style={{width:'70%'}} required/>
             <Space h="ls" />
-            <Button onClick={loginbutton} color="dark" radius="xs" size="lg">Sign in</Button>
+            <PasswordInput ref={cpassRef} icon={<Lock style={{color:'#3d3d3d', width:200}}/>} size="lg" placeholder="confirm password" radius="xs" error="" style={{width:'70%'}} required/>
+            <Space h="ls" />
+            <Checkbox onChange={e => setisChecked(e.target.checked)} ref={chk} label="I agree to terms of service and privacy policy" color="dark"/>
+            <Space h="ls" />
+            <Button onClick={signupbutton} color="dark" radius="xs" size="lg">Sign up</Button>
 
             </Group>
             </div>
@@ -43,4 +55,4 @@ function Login() {
      );
 }
 
-export default Login;
+export default Signup;
