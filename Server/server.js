@@ -1,11 +1,12 @@
 const express = require("express");
 const mongoose = require("mongoose");
-const userRoutes = require("./routes/auth-route");
 const bodyParser = require("body-parser");
 const passport = require("passport");
 const session = require("express-session");
 
+require("dotenv").config();
 const app = express();
+app.use(express.json());
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -15,11 +16,8 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 //database connection
-
 mongoose
-  .connect(
-    "mongodb+srv://ernez:9731323697313236@cluster0.oxqtz.mongodb.net/TmnDatabase?retryWrites=true&w=majority"
-  )
+  .connect(process.env.MONGODB_CONNECTION_STRING)
   .then(() => {
     console.log("Successfully connected to MongoDB Atlas!");
   })
@@ -31,6 +29,19 @@ mongoose
 app.get("/", (req, res) => {
   res.send("test1 ");
 });
+
+// Routes
+const userRoutes = require("./routes/auth-route");
 app.use("/api/auth", userRoutes);
 
-app.listen(3000, console.log("server up to running"));
+//Error handler
+app.use((req, res, next) => {
+  res.status(404);
+  res.send({
+    error: "not found",
+  });
+});
+
+const port = process.env.PORT || 3000;
+
+app.listen(port, () => console.log(`Server up and running on port ${port} !`));
