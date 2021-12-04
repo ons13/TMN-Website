@@ -1,9 +1,12 @@
 import React, {useState, useRef } from 'react';
-import {Checkbox,Button,Text,Space,Group,TextInput,PasswordInput } from '@mantine/core';
+import {Checkbox,Button,Text,Space,Group,TextInput,PasswordInput,Tooltip } from '@mantine/core';
 import EmailIcon from '@mui/icons-material/Email';
 import Lock from '@mui/icons-material/LockOutlined';
 import PersonIcon from '@mui/icons-material/Person';
-import { textAlign } from '@mui/system';
+import LockResetIcon from '@mui/icons-material/LockReset';
+import IconButton from '@mui/material/IconButton';
+import { generate } from 'generate-password';
+
 
 function Signup() {
 
@@ -20,6 +23,13 @@ function Signup() {
 
     }
 
+    function passgenerator(){
+        var pass = generate({length:10,numbers:true});
+        passRef.current.value=pass;
+        cpassRef.current.value=pass;
+
+    }
+
     return ( 
         <div style={{display:'flex', flexDirection:'row',height:'100vh'}}>
             <div style={{width:'60%'}}>
@@ -30,7 +40,12 @@ function Signup() {
             <Space h="ls" />
             <TextInput ref={mailRef} icon={<EmailIcon style={{color:'#3d3d3d'}}/>} size="lg" placeholder="email" radius="xs" error="" style={{width:'70%'}} required/>
             <Space h="ls" />
-            <PasswordInput ref={passRef} icon={<Lock style={{color:'#3d3d3d', width:200}}/>} size="lg" placeholder="password" radius="xs" error="" style={{width:'70%'}} required/>
+            <Group style={{width:'70%'}}>
+            <PasswordInput ref={passRef} icon={<Lock style={{color:'#3d3d3d', width:200}}/>} size="lg" placeholder="password" radius="xs" error="" style={{width:'88%'}} required/>
+            <Tooltip position="top" placement="center" label="use this button to generator a strong password" gutter={10} >
+            <IconButton onClick={passgenerator} style={{width:50, height:50,borderRadius:1 ,backgroundColor:'#3d3d3d'}}><LockResetIcon style={{ color:'#ffffff'}}/></IconButton>
+            </Tooltip>
+            </Group>
             <Space h="ls" />
             <PasswordInput ref={cpassRef} icon={<Lock style={{color:'#3d3d3d', width:200}}/>} size="lg" placeholder="confirm password" radius="xs" error="" style={{width:'70%'}} required/>
             <Space h="ls" />
