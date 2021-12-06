@@ -1,8 +1,13 @@
 import React from 'react';
-import {Button, Grid, Col,Center,Menu, MenuItem, MenuLabel, Divider, Text, Image } from '@mantine/core';
+import {Button, Grid, Col,Group,Menu, MenuItem, MenuLabel, Divider, Text, Image } from '@mantine/core';
 import {Link} from 'react-router-dom';
 import logo from '../media/TMN_inverted.jpg';
 import { makeStyles } from '@mui/styles';
+import FacebookIcon from '@mui/icons-material/Facebook';
+import InstagramIcon from '@mui/icons-material/Instagram';
+import YouTubeIcon from '@mui/icons-material/YouTube';
+import LinkedInIcon from '@mui/icons-material/LinkedIn';
+import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 
 
 const useStyles = makeStyles({
@@ -11,13 +16,40 @@ const useStyles = makeStyles({
     backgroundColor:"#fff",
      color:'#3d3d3d', 
      marginTop:0,
-     height:'45px',
+     height:'52px',
      borderRadius:'0px',
       '&:hover': {
         backgroundColor:'#3d3d3d !important',
         color: '#FFFFFF',
     },
-  }})
+  },
+  
+    fcb:{
+        color:'#3d3d3d', 
+        '&:hover': {
+            color: '#0000FF'
+        }
+
+    },
+
+    ytb:{
+        color:'#3d3d3d', 
+        '&:hover': {
+            color: '#0077b5'
+        }
+
+    },
+
+    ins:{
+        color:'#3d3d3d', 
+        '&:hover': {
+            color:'#d6249f'
+        }
+
+    },
+
+
+})
   
 function NavBar (){
 
@@ -31,7 +63,7 @@ function NavBar (){
 
     <div>
         <div style={{marginBottom:50}}>
-            <Grid columns={9} style={{width:'101%',height:'50px',backgroundColor:'#FFFFFF',position:'fixed',top:'0',left:'0', zIndex:'1'}}>
+            <Grid columns={9} style={{width:'101%',height:'60px',backgroundColor:'#FFFFFF',position:'fixed',top:'0',left:'0', zIndex:'1'}}>
             
                 <Col span={2} style={centered}><img alt="" src={logo} style={{height:40}}/></Col>
 
@@ -68,14 +100,18 @@ function NavBar (){
                 </Col>
 
                 <Col span={1} offset={1} style={centered}>
-                <Menu control={<Button className={classes.button} style={{useStyles}}>About</Button>}>
-                        <Menu.Item component={Link} to="/about">about us</Menu.Item>
-                        <Menu.Item >contact us</Menu.Item>
+                <Group style={{marginTop:'10px'}}>
+                    <a href="https://www.facebook.com/TunisianModernNewspaperOfficiel"><FacebookIcon className={classes.fcb}/></a>
+                    <a href="https://www.instagram.com/tunisian_modern_newspaper/"><InstagramIcon className={classes.ins}/></a>
+                    <a href="https://www.linkedin.com/company/tunisian-modern-newspaper/"><LinkedInIcon className={classes.ytb}/></a>
+
+                </Group>
                         
-                    </Menu>
+                        
+                
                 </Col>
                 <Col span={1} style={centered}>
-                    <Button variant="gradient" gradient={{ from: 'grape', to: 'cyan', deg: 35 }}>login or signup</Button>
+                    <Link to="/loginNavigation"><AccountCircleIcon style={{fontSize:35,marginTop:'10px',marginLeft:'30px',color:'#3d3d3d'}}/></Link>
                 </Col>
             
             </Grid>

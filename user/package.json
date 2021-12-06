@@ -1,7 +1,7 @@
 {
   "name": "user",
   "version": "0.1.0",
-  "private": true,
+  "private": "true",
   "dependencies": {
 
     "@emotion/react": "^11.7.0",
@@ -27,7 +27,6 @@
     "react-scripts": "4.0.3",
     "styled-components": "^5.3.3",
     "web-vitals": "^2.1.2"
-    "cra-template": "1.1.2",
    
 
   },
