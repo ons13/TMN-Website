@@ -3,6 +3,7 @@ const jwt = require("jsonwebtoken");
 const bcrypt = require("bcrypt");
 const keys = require("../config/keys");
 const passport = require("passport");
+const crypto = require("crypto");
 
 const validateRegisterInput = require("../validations/register");
 const validateLoginInput = require("../validations/login");
@@ -13,10 +14,14 @@ require("../midlewares/passport");
 //Models
 const User = require("../models/user");
 
+// email senders
+const { welcomeSender } =require ("../mailers/senders");
+
 //register User
 
 router.post("/signup", (req, res) => {
   const { errors, isValid } = validateRegisterInput(req.body);
+  const code =crypto.randomInt(10000,10000000);
 
   // Check Validation
   if (!isValid) {
@@ -32,6 +37,7 @@ router.post("/signup", (req, res) => {
         name: req.body.name,
         email: req.body.email,
         password: req.body.password,
+        verificationCode:code ,
       });
 
       bcrypt.genSalt(10, (err, salt) => {
@@ -40,8 +46,9 @@ router.post("/signup", (req, res) => {
           newUser.password = hash;
           newUser
             .save()
-            .then((user) => res.json(user))
+            .then((user) => res.json(user),welcomeSender(newUser.email,newUser.name,newUser.verificationCode))
             .catch((err) => console.log(err));
+            
         });
       });
     }
@@ -109,6 +116,31 @@ router.get(
     failureRedirect: "/auth/failure",
   })
 );
+
+
+// facebook auth 
+
+
+
+router.get("/auth/facebook", passport.authenticate("facebook"));
+
+router.get(
+  "/auth/facebook/callback",
+  passport.authenticate("facebook", {
+    successRedirect: "/",
+    failureRedirect: "/fail"
+  })
+);
+
+router.get("/fail", (req, res) => {
+  res.send("Failed attempt");
+});
+
+router.get("/", (req, res) => {
+  res.send("Success");
+});
+
+
 
 //logout
 
