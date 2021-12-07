@@ -1,11 +1,10 @@
 import React from 'react';
-import {Button, Grid, Col,Group,Menu, MenuItem, MenuLabel, Divider, Text, Image } from '@mantine/core';
+import {Button, Grid, Col,Group,Menu,Tooltip} from '@mantine/core';
 import {Link} from 'react-router-dom';
 import logo from '../media/TMN_inverted.jpg';
 import { makeStyles } from '@mui/styles';
 import FacebookIcon from '@mui/icons-material/Facebook';
 import InstagramIcon from '@mui/icons-material/Instagram';
-import YouTubeIcon from '@mui/icons-material/YouTube';
 import LinkedInIcon from '@mui/icons-material/LinkedIn';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 
@@ -27,7 +26,8 @@ const useStyles = makeStyles({
     fcb:{
         color:'#3d3d3d', 
         '&:hover': {
-            color: '#0000FF'
+            color: '#3b5998'
+            
         }
 
     },
@@ -44,6 +44,14 @@ const useStyles = makeStyles({
         color:'#3d3d3d', 
         '&:hover': {
             color:'#d6249f'
+        }
+
+    },
+
+    usr:{
+        color:'#3d3d3d', 
+        '&:hover': {
+            color:'#9f9f9f'
         }
 
     },
@@ -111,7 +119,11 @@ function NavBar (){
                 
                 </Col>
                 <Col span={1} style={centered}>
-                    <Link to="/loginNavigation"><AccountCircleIcon style={{fontSize:35,marginTop:'10px',marginLeft:'30px',color:'#3d3d3d'}}/></Link>
+                    <Link to="/loginNavigation">
+                        <Tooltip position="bottom" placement="center" label="sign in or signup to your account" gutter={10} >
+                            <AccountCircleIcon className={classes.usr} style={{fontSize:35,marginTop:'10px',marginLeft:'30px'}}/>
+                        </Tooltip> 
+                    </Link>
                 </Col>
             
             </Grid>
