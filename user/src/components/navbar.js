@@ -1,5 +1,5 @@
 import React from 'react';
-import {Button, Grid, Col,Group,Menu,Tooltip} from '@mantine/core';
+import {Button, Grid, Col,Group,Menu,Tooltip,SimpleGrid} from '@mantine/core';
 import {Link} from 'react-router-dom';
 import logo from '../media/TMN_inverted.jpg';
 import { makeStyles } from '@mui/styles';
@@ -71,7 +71,7 @@ function NavBar (){
 
     <div>
         <div style={{marginBottom:50}}>
-            <Grid columns={9} style={{width:'101%',height:'60px',backgroundColor:'#FFFFFF',position:'fixed',top:'0',left:'0', zIndex:'1'}}>
+            <Grid columns={9} style={{width:'101%',height:'60px',backgroundColor:'#FFFFFF',position:'fixed',top:'0',left:'0', zIndex:'5'}}>
             
                 <Col span={2} style={centered}><img alt="" src={logo} style={{height:40}}/></Col>
 
@@ -108,12 +108,12 @@ function NavBar (){
                 </Col>
 
                 <Col span={1} offset={1} style={centered}>
-                <Group style={{marginTop:'10px'}}>
+                <SimpleGrid cols={3}>
                     <a href="https://www.facebook.com/TunisianModernNewspaperOfficiel"><FacebookIcon className={classes.fcb}/></a>
                     <a href="https://www.instagram.com/tunisian_modern_newspaper/"><InstagramIcon className={classes.ins}/></a>
                     <a href="https://www.linkedin.com/company/tunisian-modern-newspaper/"><LinkedInIcon className={classes.ytb}/></a>
 
-                </Group>
+                </SimpleGrid>
                         
                         
                 
