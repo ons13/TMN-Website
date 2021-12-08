@@ -15,8 +15,8 @@ const hide = { display: 'none' };
 
     return ( 
         <div>
-            <MediaQuery largerThan="sm" styles={hide}>
-        <Center style={{height:'100vh'}}>
+        <MediaQuery largerThan="sm" styles={hide}>
+            <Center style={{height:'100vh'}}>
             <div style={{width:'60%'}}>
             <Group direction="column" style={{height:'100vh',display: 'flex', alignItems: 'center', justifyContent: 'center'}}>
             <Text weight={700} style={{color:'#3d3d3d',fontSize:24}}>Sign in to your account</Text>
@@ -45,16 +45,19 @@ const hide = { display: 'none' };
         </Center>
         </MediaQuery>
         <MediaQuery smallerThan="sm" styles={hide}>
-        <Group direction="column" style={{height:'100vh',display: 'flex', alignItems: 'center', justifyContent: 'center'}}>
+        <Center style={{height:'100vh', width:'100%'}}>
+        <Group direction="column" style={{height:'100vh', width:'100%',alignItems: 'center', justifyContent: 'center'}}>
+            
             <Text weight={700} style={{color:'#3d3d3d',fontSize:24}}>Sign in to your account</Text>
             <Space h="ls" />
             <TextInput ref={mailRef} icon={<EmailIcon style={{color:'#3d3d3d'}}/>} size="lg" placeholder="email" radius="xs" error="" style={{width:'70%'}} required/>
             <Space h="ls" />
-            <PasswordInput ref={passRef} icon={<Lock style={{color:'#3d3d3d', width:200}}/>} size="lg" placeholder="password" radius="xs" error="" style={{width:'70%'}} required/>
+            <PasswordInput ref={passRef} icon={<Lock style={{color:'#3d3d3d'}}/>} size="lg" placeholder="password" radius="xs" error="" style={{width:'70%'}} required/>
             <Space h="ls" />
             <Button onClick={loginbutton} color="dark" radius="xs" size="lg">Sign in</Button>
-
+           
             </Group>
+            </Center>
         </MediaQuery>
         </div>
      );
