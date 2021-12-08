@@ -1,0 +1,12 @@
+### Register User
+POST http://localhost:3000/signup
+
+### Login User
+POST http://localhost:3000/login
+
+### Logout User
+POST http://localhost:3000/logout
+
+### Google Auth
+GET http://localhost:3000/api/auth/google
+
