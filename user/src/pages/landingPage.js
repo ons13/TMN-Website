@@ -1,3 +1,4 @@
+
 import {Center, Group, MediaQuery, Space, Text } from '@mantine/core';
 import React from 'react';
 import NavBar from '../components/navbar';
@@ -7,9 +8,11 @@ import SliderArticle from '../components/sliderArticle';
 import withAutoplay from 'react-awesome-slider/dist/autoplay';
 import LatestNews from '../components/latestComp';
 
+
 const AutoplaySlider = withAutoplay(AwesomeSlider);
 const hide = { display: 'none' };
 function LandingPage() {
+
     return ( 
         <div>
             <NavBar/>
@@ -51,6 +54,7 @@ function LandingPage() {
             </div>
         </div>
      );
+
 }
 
 export default LandingPage;

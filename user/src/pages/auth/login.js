@@ -1,9 +1,25 @@
-import React, { useRef } from 'react';
+
+
 import {Center,Button,Text,Space,Group,TextInput,PasswordInput,MediaQuery } from '@mantine/core';
-import EmailIcon from '@mui/icons-material/Email';
-import Lock from '@mui/icons-material/LockOutlined';
+
+
+import React, { useRef } from "react";
+import {
+  Button,
+  Text,
+  Space,
+  Group,
+  TextInput,
+  PasswordInput,
+} from "@mantine/core";
+import EmailIcon from "@mui/icons-material/Email";
+import Lock from "@mui/icons-material/LockOutlined";
+// import { textAlign } from "@mui/system";
+
 
 function Login() {
+  const mailRef = useRef(null);
+  const passRef = useRef(null);
 
     const mailRef = useRef(null);
     const passRef = useRef(null);
@@ -61,6 +77,7 @@ const hide = { display: 'none' };
         </MediaQuery>
         </div>
      );
+
 }
 
 export default Login;

@@ -1,39 +1,47 @@
 const express = require("express");
-const mongoose =require ("mongoose");
-const userRoutes = require ("./routes/auth-route");
-const bodyParser = require("body-parser")
+const mongoose = require("mongoose");
+const bodyParser = require("body-parser");
 const passport = require("passport");
-const session =require("express-session");
+const session = require("express-session");
 
-const app =express();
+require("dotenv").config();
+const app = express();
+app.use(express.json());
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 
-app.use(session({ secret: 'cats'}));
+app.use(session({ secret: "cats" }));
 app.use(passport.initialize());
 app.use(passport.session());
 
-
-
-
-
-//database connection 
-
-mongoose.connect('mongodb+srv://ernez:9731323697313236@cluster0.oxqtz.mongodb.net/TmnDatabase?retryWrites=true&w=majority')
+//database connection
+mongoose
+  .connect(process.env.MONGODB_CONNECTION_STRING)
   .then(() => {
-    console.log('Successfully connected to MongoDB Atlas!');
+    console.log("Successfully connected to MongoDB Atlas!");
   })
   .catch((error) => {
-    console.log('Unable to connect to MongoDB Atlas!');
+    console.log("Unable to connect to MongoDB Atlas!");
     console.error(error);
   });
 
-  app.get('/',(req,res)=>{
-    res.send("test1 ");
-})
-app.use('/api/auth', userRoutes);
+app.get("/", (req, res) => {
+  res.send("test1 ");
+});
 
+// Routes
+const userRoutes = require("./routes/auth-route");
+app.use("/api/auth", userRoutes);
 
+//Error handler
+app.use((req, res, next) => {
+  res.status(404);
+  res.send({
+    error: "not found",
+  });
+});
 
-app.listen(3000,console.log("server up to running"));
+const port = process.env.PORT || 3000;
+
+app.listen(port, () => console.log(`Server up and running on port ${port} !`));
