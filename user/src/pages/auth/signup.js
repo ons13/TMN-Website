@@ -73,9 +73,9 @@ function Signup() {
             
             </Group>
             </div>
-        </Center>
-        </MediaQuery>
-        <MediaQuery smallerThan="sm" styles={hide}>
+            </Center>
+            </MediaQuery>
+            <MediaQuery smallerThan="sm" styles={hide}>
             <div>
             <Group direction="column" style={{height:'100vh',display: 'flex', alignItems: 'center', justifyContent: 'center'}}>
             <Text weight={700} style={{color:'#3d3d3d',fontSize:24}}>Sign in to your account</Text>
