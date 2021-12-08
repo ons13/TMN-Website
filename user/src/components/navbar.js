@@ -1,5 +1,5 @@
-import React from 'react';
-import {Button, Grid, Col,Group,Menu,Tooltip,SimpleGrid} from '@mantine/core';
+import React, {useState} from 'react';
+import {MediaQuery,Button, Grid, Col,Drawer,Menu,Tooltip,SimpleGrid,Burger,Accordion} from '@mantine/core';
 import {Link} from 'react-router-dom';
 import logo from '../media/TMN_inverted.jpg';
 import { makeStyles } from '@mui/styles';
@@ -9,6 +9,7 @@ import LinkedInIcon from '@mui/icons-material/LinkedIn';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 
 
+const hide = { display: 'none' };
 const useStyles = makeStyles({
 
     button: {
@@ -17,6 +18,21 @@ const useStyles = makeStyles({
      marginTop:0,
      height:'52px',
      borderRadius:'0px',
+      '&:hover': {
+        backgroundColor:'#3d3d3d !important',
+        color: '#FFFFFF',
+    },
+  },
+
+  buttonDrawer: {
+    backgroundColor:"#fff",
+     color:'#3d3d3d', 
+     marginTop:0,
+     marginBottom:50,
+     height:'52px',
+     width:'100%',
+     borderRadius:'0px',
+     fontSize:'24px',
       '&:hover': {
         backgroundColor:'#3d3d3d !important',
         color: '#FFFFFF',
@@ -48,6 +64,7 @@ const useStyles = makeStyles({
 
     },
 
+
     usr:{
         color:'#3d3d3d', 
         '&:hover': {
@@ -60,7 +77,7 @@ const useStyles = makeStyles({
 })
   
 function NavBar (){
-
+    const [opened, setOpened] = useState(false);
     const classes = useStyles();
 
     const centered={
@@ -70,6 +87,7 @@ function NavBar (){
   return (
 
     <div>
+        <MediaQuery largerThan="xs" styles={hide}>
         <div style={{marginBottom:50}}>
             <Grid columns={9} style={{width:'101%',height:'60px',backgroundColor:'#FFFFFF',position:'fixed',top:'0',left:'0', zIndex:'5'}}>
             
@@ -129,6 +147,38 @@ function NavBar (){
             </Grid>
             
         </div>
+        </MediaQuery>
+
+        <MediaQuery smallerThan="xs" styles={hide}>
+            <div style={{marginBottom:50}}>
+            <Grid columns={9} style={{width:'101%',height:'60px',backgroundColor:'#FFFFFF',position:'fixed',top:'0',left:'0', zIndex:'5'}}>
+            <Col span={3} style={centered}>
+            <Burger opened={opened} onClick={() => setOpened((o) => !o)} title="drawer"/>
+            <Drawer opened={opened} onClose={() => setOpened(false)} title={<img alt="" src={logo} style={{height:40}}/>} padding="xl" size="xl">
+            <Button className={classes.buttonDrawer} style={{useStyles}}>News</Button>
+            <Button className={classes.buttonDrawer} style={{useStyles}}>Blogs</Button>
+            <Button className={classes.buttonDrawer} style={{useStyles}}>Events</Button>
+            <Button className={classes.buttonDrawer} style={{useStyles}}>podcasts</Button>
+            <SimpleGrid spacing="xl" cols={3} style={{display:'flex', alignItems:'center',alignContent:'center',justifyContent:'center',marginTop:0}}>
+                    <a href="https://www.facebook.com/TunisianModernNewspaperOfficiel"><FacebookIcon style={{fontSize:'48px'}} className={classes.fcb} /></a>
+                    <a href="https://www.instagram.com/tunisian_modern_newspaper/"><InstagramIcon style={{marginLeft:50,marginRight:50,fontSize:'48px'}} className={classes.ins}/></a>
+                    <a href="https://www.linkedin.com/company/tunisian-modern-newspaper/"><LinkedInIcon style={{fontSize:'48px'}} className={classes.ytb}/></a>
+
+                </SimpleGrid>
+            </Drawer>
+            </Col>
+            <Col span={3} style={centered}>
+            <img alt="" src={logo} style={{height:40}}/>
+            </Col>
+            <Col span={3} style={centered}>
+            <Link to="/loginNavigation">
+                <AccountCircleIcon className={classes.usr} style={{fontSize:35,marginTop:'10px',marginLeft:'30px'}}/>
+            </Link>
+            </Col>
+
+            </Grid>
+            </div>
+        </MediaQuery>
     </div>
     
     )
