@@ -1,7 +1,7 @@
 const { email } = require("./config");
 
 const welcomeSender = (recipient, name, code) => {
-  console.log("Called in Sender");
+  // console.log("Called in Sender");
   email
     .send({
       template: "welcome",
