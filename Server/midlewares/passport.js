@@ -1,8 +1,6 @@
 const passport = require("passport");
 const GoogleStrategy = require("passport-google-oauth2").Strategy;
-const FacebookStrategy =require("passport-facebook").Strategy;
-
-
+const FacebookStrategy = require("passport-facebook").Strategy;
 
 const GOOGLE_CLIENT_ID =
   "296377947195-6h923bn6i4bn7smrn92um8asg6itvv80.apps.googleusercontent.com";
@@ -33,17 +31,17 @@ passport.deserializeUser(function (user, done) {
 passport.use(
   new FacebookStrategy(
     {
-      clientID:928333631150674 ,
-      clientSecret:9731323697313236 ,
-      callbackURL:"http://localhost:3000/auth/facebook/callback" ,
-      profileFields: ["email", "name"]
+      clientID: 928333631150674,
+      clientSecret: 9731323697313236,
+      callbackURL: "http://localhost:3000/auth/facebook/callback",
+      profileFields: ["email", "name"],
     },
-    function(accessToken, refreshToken, profile, done) {
+    function (accessToken, refreshToken, profile, done) {
       const { email, first_name, last_name } = profile._json;
       const userData = {
         email,
         firstName: first_name,
-        lastName: last_name
+        lastName: last_name,
       };
       new userModel(userData).save();
       done(null, profile);
